@@ -34,4 +34,8 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'league' => [
+        'key' => env ( 'LEAGUE_KEY' ),
+    ],
+
 ];
