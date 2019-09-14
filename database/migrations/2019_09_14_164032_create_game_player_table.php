@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKillsTable extends Migration
+class CreateGamePlayerTable extends Migration
 {
 
     /**
@@ -15,23 +15,23 @@ class CreateKillsTable extends Migration
     public function up ()
     {
 
-        Schema::create ( 'kills' , function ( Blueprint $table ) {
+        Schema::create ( 'game_player' , function ( Blueprint $table ) {
 
             $table->bigIncrements ( 'id' );
 
-            $table->string ( 'killer_id' );
-            $table->string ( 'victim_id' );
-
-            $table->integer ( 'killer_champion' )
-                ->unsigned ();
-
-            $table->integer ( 'victim_champion' )
-                ->unsigned ();
-
-            $table->bigInteger ( 'killed_at' )
-                ->unsigned ();
-
             $table->bigInteger ( 'game_id' )
+                ->unsigned ();
+
+            $table->string ( 'lane' )
+                ->nullable ();
+
+            $table->string ( 'role' )
+                ->nullable ();
+
+            $table->integer ( 'champion' )
+                ->nullable ();
+
+            $table->bigInteger ( 'player_id' )
                 ->unsigned ();
 
             $table->timestamps ();
@@ -45,6 +45,11 @@ class CreateKillsTable extends Migration
                 ->on ( 'games' )
                 ->onDelete ( 'cascade' );
 
+            $table->foreign ( 'player_id' )
+                ->references ( 'id' )
+                ->on ( 'players' )
+                ->onDelete ( 'cascade' );
+
         });
 
     }
@@ -56,8 +61,8 @@ class CreateKillsTable extends Migration
      */
     public function down ()
     {
-
-        Schema::dropIfExists ( 'kills' );
+        
+        Schema::dropIfExists ( 'game_player' );
 
     }
 

@@ -7,25 +7,43 @@ use Illuminate\Database\Migrations\Migration;
 class CreateGamesTable extends Migration
 {
     /**
-     * Run the migrations.
+     *  Run the migrations.
      *
-     * @return void
+     *  @return void
      */
-    public function up()
+    public function up ()
     {
-        Schema::create('games', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+
+        Schema::create ( 'games' , function ( Blueprint $table ) {
+
+            $table->bigIncrements ( 'id' );
+
+            $table->string ( 'game_id' )->unique ();
+            $table->string ( 'game_unique' )->unique ();
+
+            $table->string ( 'region' );
+
+            $table->integer ( 'queue' );
+            $table->integer ( 'season' );
+
+            $table->dateTime ( 'played_at' );
+
+            $table->timestamps ();
+
         });
+
     }
 
     /**
-     * Reverse the migrations.
+     *  Reverse the migrations.
      *
-     * @return void
+     *  @return void
      */
-    public function down()
+    public function down ()
     {
-        Schema::dropIfExists('games');
+
+        Schema::dropIfExists ( 'games' );
+
     }
+
 }

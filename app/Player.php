@@ -8,7 +8,7 @@ class Player extends Model
 {
 
     /**
-     *  List of hidden attributes
+     *  List of hidden attributes.
      * 
      *  @var array
      */
@@ -17,10 +17,22 @@ class Player extends Model
     ];
 
     /**
-     *  List of guarded attributes
+     *  List of guarded attributes.
      * 
      *  @var array
      */
     protected $guarded = [];
+
+    /**
+     *  Games the player has played in.
+     * 
+     *  @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function games ()
+    {
+
+        $this->belongsToMany ( Game::class );
+
+    }
 
 }

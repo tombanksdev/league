@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot ()
     {
         
+        $this->app->bind ( "tb-match" , "App\\Services\\MatchService" );
         $this->app->bind ( "tb-summoner" , "App\\Services\\SummonerService" );
 
     }
